@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "pixel_level_land_classification_my", "pixel_level_land_classification_my.pyproj", "{2B19FB95-3CAE-4907-B0A5-2E6C4EE7DFC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B19FB95-3CAE-4907-B0A5-2E6C4EE7DFC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B19FB95-3CAE-4907-B0A5-2E6C4EE7DFC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09100539-9D19-4145-BE56-5AF730F0B820}
+	EndGlobalSection
+EndGlobal
