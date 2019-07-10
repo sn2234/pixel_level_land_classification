@@ -12,6 +12,19 @@ from collections import namedtuple
 import matplotlib.pyplot as plt
 from scipy.special import expit
 
+from osgeo import gdal
+from gdalconst import *
+import osr
+
+#%% Calculate pixel dimensions
+def getPixelDims(img_filename):
+    img = gdal.Open(img_filename, GA_ReadOnly)
+    img_proj = osr.SpatialReference()
+    img_proj.ImportFromWkt(img.GetProjection())
+    ulcrnrx, xstep, _, ulcrnry, _, ystep = img.GetGeoTransform()
+
+    return (xstep, ystep)
+
 #%% Load the model and evaluation data
 # The default filename points to your model trained for one epoch.
 # You can also try using our sample model, 250epochs.model
@@ -137,6 +150,24 @@ overlayAppliedTrue = cv2.addWeighted(dataPatch[:3].transpose((2,1,0)), 1.0,
 showImg(dataPatch[:3].transpose((2,1,0)), 1, "Original Image")
 showImg(overlayApplied, 2, "Image with mask")
 showImg(overlayAppliedTrue, 3, "Image with manual markdown")
+
+labelsInPredicted = predictedPatch.argmax(axis=0)
+lablesInTrue = true_lc_labels.argmax(axis=0)
+(xstep, ystep) = getPixelDims(naip_filename)
+
+metersSqPerPixel = abs(xstep*ystep)
+totalOverlayArea = region_dim*region_dim*metersSqPerPixel
+
+layerAreas = {}
+
+for layerIdx in range(len(layerNames)):
+    layerArea = np.sum(labelsInPredicted == layerIdx)
+    layerAreas[layerNames[layerIdx]] = layerArea*metersSqPerPixel
+
+print(f"Total overlay area: {totalOverlayArea}, m^2")
+for (k, v) in layerAreas.items():
+    print(f"{k} has {v} m^2, {100*v/totalOverlayArea}%")
+
 #plt.imshow(img_labels_pred_full)
 
 #%% Draw legend
