@@ -164,9 +164,10 @@ for layerIdx in range(len(layerNames)):
     layerArea = np.sum(labelsInPredicted == layerIdx)
     layerAreas[layerNames[layerIdx]] = layerArea*metersSqPerPixel
 
-print(f"Total overlay area: {totalOverlayArea}, m^2")
+print("\n\nStatistics\n\n")
+print(f"Total overlay area: {totalOverlayArea:.2f}, m^2")
 for (k, v) in layerAreas.items():
-    print(f"{k} has {v} m^2, {100*v/totalOverlayArea}%")
+    print(f"{k} has {v:.2f} m^2, {100*v/totalOverlayArea:.2f}%")
 
 #plt.imshow(img_labels_pred_full)
 
