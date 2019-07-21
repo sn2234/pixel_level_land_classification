@@ -2,7 +2,9 @@
 #%% Load dependencies
 
 import os
-os.environ['PROJ_LIB'] = r'C:\Users\nobody\Anaconda3\envs\cntk\Lib\site-packages\pyproj\data'
+os.environ['PROJ_LIB'] = r'C:\Users\nobody\Anaconda3\envs\geo\Library\share\proj'
+# r'C:\Users\nobody\Anaconda3\envs\geo\Lib\site-packages\pyproj\data'
+
 
 import numpy as np
 import pandas as pd
@@ -15,6 +17,8 @@ from scipy.special import expit
 from osgeo import gdal
 from gdalconst import *
 import osr
+
+gdal.UseExceptions()
 
 #%% Calculate pixel dimensions
 def getPixelDims(img_filename):
