@@ -54,6 +54,8 @@ _, imgHeight, imgWidth = naip_image.shape
 center_x = np.random.randint(padding+delta, imgWidth-(padding+delta))
 center_y = np.random.randint(padding+delta, imgHeight-(padding+delta))
 
+print(f"Using patch parameters center_x: {center_x}, center_y: {center_y}")
+
 
 #%% Extract patch
 
@@ -140,13 +142,13 @@ img_shape = (region_dim+2*padding, region_dim+2*padding, 3)
 
 img_labels_pred_full = np.zeros(img_shape, dtype="float32")
 img_labels_pred_full[padding:(region_dim+padding),
-                     padding:(region_dim+padding), :] = img_labels_pred
+                     padding:(region_dim+padding), :] = img_labels_pred*10
 overlayApplied = cv2.addWeighted(dataPatch[:3].transpose((2,1,0)), 1.0,
                                  img_labels_pred_full, 0.5, 0)
 
 img_labels_true_full = np.zeros(img_shape, dtype="float32")
 img_labels_true_full[padding:(region_dim+padding),
-                     padding:(region_dim+padding), :] = img_labels_true
+                     padding:(region_dim+padding), :] = img_labels_true*10
 overlayAppliedTrue = cv2.addWeighted(dataPatch[:3].transpose((2,1,0)), 1.0,
                                  img_labels_true_full, 0.5, 0)
 
